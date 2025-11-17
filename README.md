@@ -46,14 +46,25 @@ Bicubic interpolation tends to give better results compared to bilinear interpol
 
 
 ### Lanczos
+Lanczos is a resampling method that can be implemented with multiple window/filter sizes, defined by a variable **a**. The formula is as follows:
 
-sinc function
+![Lanczos](docs/images/lanczos_formula.png)
 
-8x8 window!!
+This is applied on 1D data, both during the vertical and the horizontal passes through the Lanczos window. The function itself is used in the following formula:
 
-Ringing effect
+![Lanczos 2](docs/images/lanczos_formula2.png)
 
-Better results
+S(x) is the interpolated pixel value at point x. On each row and column of the window, the pixel value at point X is obtained by calculating the contribution of all the pixels on the respective row/column.
+
+As its basis, Lanczos resampling uses the sinc function, which is defined as
+
+`sin(x) / x`,
+
+which goes to 1 as x approaches 0.
+
+The Pillow library implements Lanczos resampling, setting **a** to 3. This means it uses a 6x6 window, which leads to a high computational effort.
+
+Lanczos resampling creates even better reconstructed images than bicubic interpolation, if we average out the PSNR values on a hundred samples, and even so, it surpasses bicubic interpolation by a small margin.
 
 
 ## Evaluation
