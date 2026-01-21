@@ -27,7 +27,7 @@ Bilinear interpolation usually gives better results than Nearest Neighbor, depen
 
 
 ### Bicubic
-Foc bicubic interpolation, the number of pixels used from the LR image for a single SR pixel grows once again. Bicubic interpolation uses a 4x4 window of pixels, meaning a total of 16 LR pixels.
+For bicubic interpolation, the number of pixels used from the LR image for a single SR pixel grows once again. Bicubic interpolation uses a 4x4 window of pixels, meaning a total of 16 LR pixels.
 
 The main idea is very similar to bilinear, as we must first interpolate horizontally between the 4 pixels on each row, and afterwards, interpolate vertically between the 4 pixel values we just obtained.
 
